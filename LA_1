@@ -1,3 +1,4 @@
+print("===STUDENT'S INFORMATION===")
 name, section, hobby = input("Enter name: ").strip().title(), input("Enter Section: ").strip().upper(), input("Enter your hobby: ").strip().lower()
 print("\n")
 def info():
