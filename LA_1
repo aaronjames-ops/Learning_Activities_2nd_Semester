@@ -1,0 +1,6 @@
+name, section, hobby = input("Enter name: ").strip().title(), input("Enter Section: ").strip().upper(), input("Enter your hobby: ").strip().lower()
+print("\n")
+def info():
+    print(f"Hi! I'm {name}, from {section}. My hobby is {hobby}.")
+info()
+info()
