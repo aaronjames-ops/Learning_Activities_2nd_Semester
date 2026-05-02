@@ -1,0 +1,8 @@
+limit = int(input("How many is the base star? "))
+def count(star = 0):
+    if star < limit:
+        print(" " * (limit - star) + " *"  * (star + 1))
+        star += 1
+        count(star)
+count()
+print(f"Done pyramid with {limit} * base.")
