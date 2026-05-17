@@ -1,0 +1,51 @@
+import random
+
+
+def generate_password(length, upper, lower, numbers):
+    possible = []
+
+    if upper == "yes":
+        for item in [
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+            "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+        ]:
+            possible.append(item)
+
+    if lower == "yes":
+        for item in [
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+            "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+        ]:
+            possible.append(item)
+
+    if numbers == "yes":
+        for item in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            possible.append(item)
+
+    if len(possible) == 0:
+        return ""
+
+    password = ""
+
+    for i in range(length):
+        password = password + random.choice(possible)
+
+    return password
+
+
+def main():
+    length = int(input("Enter password length: "))
+    upper = input("Include uppercase? ")
+    lower = input("Include lowercase? ")
+    numbers = input("Include numbers? ")
+
+    password = generate_password(length, upper, lower, numbers)
+
+    print()
+    print("Generated Password:", password)
+    print()
+    print("Password generated with", length, "length")
+
+
+if __name__ == "_main_":
+    main()
