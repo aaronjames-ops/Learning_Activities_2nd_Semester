@@ -1,51 +1,51 @@
 import random
 
 
-def generate_password(length, upper, lower, numbers):
-    possible = []
+def get_user_choice(message):
+    answer = input(message).strip().lower()
+    return answer == "yes"
 
-    if upper == "yes":
-        for item in [
-            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-            "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-        ]:
-            possible.append(item)
 
-    if lower == "yes":
-        for item in [
-            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-            "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-        ]:
-            possible.append(item)
+def generate_password(length, use_upper, use_lower, use_numbers):
+    uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    lowercase = "abcdefghijklmnopqrstuvwxyz"
+    numbers = "0123456789"
 
-    if numbers == "yes":
-        for item in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-            possible.append(item)
+    characters = ""
 
-    if len(possible) == 0:
-        return ""
+    if use_upper:
+        characters += uppercase
+
+    if use_lower:
+        characters += lowercase
+
+    if use_numbers:
+        characters += numbers
+
+    if characters == "":
+        return "No character types selected."
 
     password = ""
 
-    for i in range(length):
-        password = password + random.choice(possible)
+    for _ in range(length):
+        password += random.choice(characters)
 
     return password
 
 
 def main():
+    print("===PASSWORD GENERATOR===")
     length = int(input("Enter password length: "))
-    upper = input("Include uppercase? ")
-    lower = input("Include lowercase? ")
-    numbers = input("Include numbers? ")
 
-    password = generate_password(length, upper, lower, numbers)
+    use_upper = get_user_choice("Include uppercase? (yes/no): ")
+    use_lower = get_user_choice("Include lowercase? (yes/no): ")
+    use_numbers = get_user_choice("Include numbers? (yes/no): ")
 
-    print()
-    print("Generated Password:", password)
-    print()
-    print("Password generated with", length, "length")
+    password = generate_password(length, use_upper, use_lower, use_numbers)
+
+    print("\nGenerated Password:", password)
+    print(f"\nPassword generated with {length} length")
 
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
